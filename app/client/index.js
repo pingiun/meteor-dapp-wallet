@@ -1,3 +1,5 @@
+import { abi } from './templates/views/music_index';
+
 Meteor.startup(function() {
 
     // SET default language
@@ -30,19 +32,16 @@ Meteor.startup(function() {
         }
 
         // If on the mainnet, this will add the unicorn token by default, only once.
-        if (!localStorage['dapp_hasUnicornToken'] && Session.get('network') === 'main'){
-            localStorage.setItem('dapp_hasUnicornToken', true);
+        if (!localStorage['dapp_hasMusicIndexContract'] && Session.get('network') === 'ropsten'){
+            localStorage.setItem('dapp_hasMusicIndexContract', true);
 
             // wait 5s, to allow the tokens to be loaded from the localstorage first
             Meteor.setTimeout(function(){
-                var unicornToken = '0x89205a3a3b2a69de6dbf7f01ed13b2108b2c43e7';
-                tokenId = Helpers.makeId('token', unicornToken);
-                Tokens.upsert(tokenId, {$set: {
-                    address: unicornToken,
-                    name: 'Unicorns',
-                    symbol: '🦄',
-                    balances: {},
-                    decimals: 0
+                var musicIndexContract = '0x0ea6d6f0561bc1339fe0b7b71f1de21b3c6799ff';
+                CustomContracts.upsert(null, {$set: {
+                    address: musicIndexContract,
+                    name: 'Music Index',
+                    jsonInterface: abi
                 }});
             }, 5000);
         }
