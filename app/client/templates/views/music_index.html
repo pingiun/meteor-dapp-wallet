@@ -1,0 +1,30 @@
+<template name="views_music_index">
+    <form class="search">
+    <input type="text" name="text" placeholder="Search anything on musicbrainz"/>
+    <input class="btn btn-primary" type="submit" value="Search" />
+  </form>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Song Title</th>
+          <th>Artist(s)</th>
+          <th>URLs</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each results}}
+        <tr>
+          <th><a href="{{pathFor route='viewURI' uuid=id}}">{{title}}</a></th>
+          <th><a href="{{pathFor route='viewURI' uuid=id}}">
+            {{#each [artist-credit]}}
+              {{artist.name}} <br />
+            {{/each}}
+          </a></th>
+          <th><a href="{{pathFor route='viewURI' uuid=id}}">{{ amountOfURIs id}}</a></th>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</template>

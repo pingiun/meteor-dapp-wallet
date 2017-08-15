@@ -174,7 +174,25 @@ FlowRouter.route('/account/new', {
     }
 });
 
+FlowRouter.route('/musicIndex', {
+    name: 'musicIndex',
+    action: function(params, queryParams) {
+        BlazeLayout.render('layout_main', {
+            header: 'layout_header',
+            main: 'views_music_index'
+        })
+    }
+});
 
+FlowRouter.route('/musicIndex/:uuid', {
+    name: 'viewURI',
+    action: function(params, queryParams) {
+        BlazeLayout.render('layout_main', {
+            header: 'layout_header',
+            main: 'views_music_uri'
+        })
+    }
+})
 
 /**
 The account route.
@@ -190,4 +208,3 @@ FlowRouter.route('/account/:address', {
         });
     }
 });
-

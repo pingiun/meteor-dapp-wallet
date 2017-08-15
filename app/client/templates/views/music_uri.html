@@ -1,0 +1,11 @@
+<template name="views_music_uri">
+    {{#if youtubeId}}
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{youtubeId}}" frameborder="0" allowfullscreen></iframe>
+    {{else}}
+        {{#if magnetLink}}
+            <a href="{{magnetLink}}">{{filename}}</a>
+        {{else}}
+            <a href="{{uri}}">{{uri}}</a>
+        {{/if}}
+    {{/if}}
+</template>
